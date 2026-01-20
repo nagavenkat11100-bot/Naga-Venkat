@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Naga Venkat | Portfolio</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    scroll-behavior:smooth;
+    transition:all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+    background-color: #ffffff; /* WHITE BACKGROUND */
+    color: #333; /* Dark text for contrast */
+}
+
+/* REMOVED ANIMATED GRADIENTS - NOW PURE WHITE */
+body.light{
+    background-color: #ffffff;
+    position: relative;
+}
+
+body.light::before {
+    content: none; /* Remove overlay effects */
+}
+
+body.dark{
+    background-color: #f8f9fa; /* Very light gray for dark mode */
+    color: #333;
+}
+
+body.dark::before {
+    content: none; /* Remove overlay effects */
+}
+
+/* SIMPLIFIED ANIMATIONS */
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 0%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+    100% { transform: translateY(0px) rotate(360deg); }
+}
+
+/* UPDATED HERO FOR WHITE BACKGROUND */
+.hero{
+    background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.03)),
+                linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f093fb);
+    color:#333;
+    padding:120px 20px;
+    border-bottom-left-radius:50px;
+    border-bottom-right-radius:50px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    animation: heroPulse 3s ease-in-out infinite alternate;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, rgba(255,255,255,0.3), transparent);
+    animation: rotate 4s linear infinite;
+}
+
+.hero h1, .hero p {
+    color: #333 !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@keyframes heroPulse {
+    0% { box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+    100% { box-shadow: 0 25px 70px rgba(0,0,0,0.15); }
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+/* NEON SECTION TITLES - ADJUSTED FOR WHITE BG */
+.section-title{
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-weight:900;
+    font-size: 2.2rem;
+    margin-bottom:40px;
+    font-family: 'Orbitron', monospace;
+    text-shadow: 
+        0 0 5px rgba(0,0,0,0.3),
+        0 0 10px rgba(0,0,0,0.2),
+        0 0 20px rgba(0,0,0,0.1);
+    animation: neonGlow 2s ease-in-out infinite alternate;
+    color: #333;
+}
+
+@keyframes neonGlow {
+    0% { text-shadow: 0 0 5px rgba(0,0,0,0.3), 0 0 10px rgba(0,0,0,0.2), 0 0 20px rgba(0,0,0,0.1); }
+    100% { text-shadow: 0 0 10px rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.3), 0 0 30px rgba(0,0,0,0.2); }
+}
+
+body.light .section-title{color:#e34f26;} /* Red for light */
+body.dark .section-title{color:#2196f3;} /* Blue for dark */
+
+/* GLOWING TOGGLE - ADJUSTED */
+.toggle-btn{
+    position:fixed;
+    top:90px;
+    right:25px;
+    z-index:1000;
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.9);
+    color: #333;
+    box-shadow: 
+        0 4px 15px rgba(0,0,0,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+    animation: pulse 2s infinite;
+    font-weight: bold;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 4px 15px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5); }
+    50% { box-shadow: 0 6px 20px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.7); }
+    100% { box-shadow: 0 4px 15px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5); }
+}
+
+/* SKILL CARDS - WHITE BG FRIENDLY */
+.skill-card{
+    border-radius:25px;
+    padding:30px 20px;
+    text-align:center;
+    color:#333;
+    transition:all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(0,0,0,0.05);
+    background: rgba(255,255,255,0.9);
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.7s;
+}
+
+.skill-card:hover::before {
+    left: 100%;
+}
+
+.skill-logo {
+    width:70px;
+    height:70px;
+    margin-bottom:15px;
+    object-fit:contain;
+    filter: brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(5000%) hue-rotate(0deg);
+    transition: all 0.4s ease;
+}
+
+.skill-card:hover .skill-logo {
+    transform: scale(1.1) rotate(10deg);
+}
+
+.skill-card h5 {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.skill-card p {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(45deg, #333, #666);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.skill-card:hover {
+    transform: translateY(-15px) scale(1.08) rotateX(5deg);
+    box-shadow: 
+        0 30px 60px rgba(0,0,0,0.15),
+        0 0 40px rgba(0,0,0,0.1);
+}
+
+/* Official Brand Colors */
+.html{background:linear-gradient(135deg,#e34f26,#f06d2e);}
+.css{background:linear-gradient(135deg,#1572b6,#2091eb);}
+.bootstrap{background:linear-gradient(135deg,#563d7c,#6f42c1);}
+.js{background:linear-gradient(135deg,#f7df1e,#f0db4f);}
+.github{background:linear-gradient(135deg,#333,#24292e);}
+
+/* PROJECT CARDS */
+.project-card{
+    border-radius:22px;
+    transition:all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0,0,0,0.05);
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    padding: 30px;
+    text-align: center;
+    color: #333;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.6s;
+}
+
+.project-card:hover::before {
+    left: 100%;
+}
+
+.project-card:hover{
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 35px 70px rgba(0,0,0,0.15);
+}
+
+.project-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    transition: all 0.4s ease;
+    color: #333;
+}
+
+.project-card:hover .project-icon {
+    transform: scale(1.2) rotate(360deg);
+    opacity: 1;
+}
+
+.project-card h5 {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* NAVBAR - WHITE FRIENDLY */
+.navbar {
+    background: rgba(255,255,255,0.95) !important;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: #333 !important;
+}
+
+/* FOOTER */
+footer{
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(25px);
+    color:#333;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+/* LINKS */
+a {
+    color: #e34f26 !important;
+}
+
+a:hover {
+    color: #d43f1a !important;
+}
+</style>
+</head>
+
+<body class="light">
+
+<!-- GLOWING MODE TOGGLE -->
+<button class="btn btn-outline-danger toggle-btn" onclick="toggleMode()">🌙 / ☀️</button>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark fixed-top">
+<div class="container">
+<a class="navbar-brand fw-bold" href="#" style="font-family: 'Orbitron', monospace; font-size: 1.5rem; color: #333 !important;">Naga Venkat</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero text-center">
+<img src="image3.jpeg" class="rounded-circle border border-dark shadow-lg mb-4"
+style="width:160px;height:160px;object-fit:cover; border-width: 5px; filter: drop-shadow(0 0 20px rgba(0,0,0,0.2));">
+<h1 class="fw-bold display-4" style="font-family: 'Orbitron', monospace; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Naga Venkat</h1>
+<p class="lead mb-0" style="font-size: 1.4rem; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">BCA Student | Web Developer | Army Aspirant 🇮🇳</p>
+</section>
+
+<!-- ABOUT -->
+<section class="container mt-5">
+<h3 class="section-title">About Me</h3>
+<p class="lead text-center" style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: #555;">
+I am a BCA student passionate about web development and technology.
+My dream is to become an Army Officer while growing as a developer.
+</p>
+</section>
+
+<!-- SKILLS - OFFICIAL LOGOS -->
+<section class="container mt-5">
+<h3 class="section-title text-center">Skills</h3>
+
+<div class="row">
+<div class="col-md-3 col-sm-6 mb-5">
+<div class="skill-card html">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5" class="skill-logo" loading="lazy">
+<h5>HTML5</h5>
+<p>90%</p>
+</div>
+</div>
+
+<div class="col-md-3 col-sm-6 mb-5">
+<div class="skill-card css">
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS3" class="skill-logo" loading="lazy">
+<h5>CSS3</h5>
+<p>85%</p>
+</div>
+</div>
+
+<div class="col-md-3 col-sm-6 mb-5">
+<div class="skill-card js">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/64/JavaScript-logo.png" alt="JavaScript" class="skill-logo" loading="lazy">
+<h5>JavaScript</h5>
+<p>70%</p>
+</div>
+</div>
+
+<div class="col-md-3 col-sm-6 mb-5">
+<div class="skill-card bootstrap">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg" alt="Bootstrap" class="skill-logo" loading="lazy">
+<h5>Bootstrap</h5>
+<p>80%</p>
+</div>
+</div>
+
+<div class="col-md-3 col-sm-6 mb-5">
+<div class="skill-card github">
+<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" class="skill-logo" loading="lazy">
+<h5>GitHub</h5>
+<p>75%</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROJECTS - NO IMAGES, ICON BASED -->
+<section class="container mt-5">
+<h3 class="section-title">Projects</h3>
+
+<div class="row">
+<div class="col-md-4 mb-4">
+<div class="project-card">
+<div class="project-icon">💼</div>
+<h5>Personal Portfolio</h5>
+<p>Responsive portfolio using HTML, CSS & Bootstrap with advanced animations and effects.</p>
+</div>
+</div>
+
+
+<div class="col-md-4 mb-4">
+<div class="project-card">
+<div class="project-icon">📂</div>
+<h5>GitHub Projects</h5>
+<p>Collection of 15+ practice projects showcasing modern web development techniques.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="container mt-5 mb-5">
+<h3 class="section-title">Contact & Online Reach</h3>
+
+<div class="row text-center">
+<div class="col-md-6 col-lg-4 mb-4">
+<p><strong>📍 Address:</strong><br>Tenali, Andhra Pradesh, India</p>
+</div>
+<div class="col-md-6 col-lg-4 mb-4">
+<p><strong>📧 Email:</strong><br><a href="mailto:venkatnaga80@gmail.com">venkatnaga80@gmail.com</a></p>
+<p><strong>📞 Phone:</strong><br><a href="tel:6281341992">6281341992</a></p>
+</div>
+<div class="col-md-6 col-lg-4 mb-4">
+<p><strong>💻 GitHub:</strong><br><a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+<p><strong>💼 LinkedIn:</strong><br><a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+<p><strong>📱 WhatsApp:</strong><br><a href="https://wa.me/916281341992" target="_blank">Chat on WhatsApp</a></p>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center p-5">
+<p class="fw-bold fs-4 mb-2" style="font-family: 'Orbitron', monospace; color: #333;">Code • Build • Dream • Serve 🇮🇳</p>
+<small class="opacity-75" style="color: #666;">HTML • CSS • Bootstrap • Web Development</small>
+</footer>
+
+<script>
+function toggleMode(){
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+    createParticles();
+}
+
+function createParticles() {
+    for(let i = 0; i < 20; i++) {
+        setTimeout(() => {
+            let particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 8px;
+                height: 8px;
+                background: rgba(227, 79, 38, 0.8);
+                border-radius: 50%;
+                left: ${Math.random() * 100}vw;
+                top: ${Math.random() * 100}vh;
+                pointer-events: none;
+                z-index: 9999;
+                animation: particleFloat 2s ease-out forwards;
+            `;
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 2000);
+        }, i * 50);
+    }
+}
+
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes particleFloat {
+        0% { transform: translateY(0) scale(1); opacity: 1; }
+        100% { transform: translateY(-100px) scale(0); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+
+document.querySelector('.navbar-brand').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
